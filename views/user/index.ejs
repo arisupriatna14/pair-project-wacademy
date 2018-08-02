@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head', { title: 'Homepage' }) %>
+
+  <body style="background-color: snow">
+    <%- include('../partials/navbar-user') %>
+      <br>
+      <br>
+      <br>
+      <div class="container">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+          <strong>Welcome <%= username %>.</strong> 
+          Are you ready to study today?
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="row">
+          <% data.forEach(data => { %>
+            <div class="col-lg-4">
+              <div class="card">
+                <div class="card-body">
+                  <img src="<%= data.image %>" alt="" class="card-img-top">
+                  <% for (let i = 0; i < data.rating; i++) { %>
+                    <span class="fa fa-star checked" style="color: orange"></span>
+                  <% } %>
+                  <%= data.rating %>
+                  <span class="text-muted">Level: <%= data.level %></span><br><br>
+                  <h5 class="card-title"><%= data.title %></h5>
+                  <p class="card-text"><%= data.description %></p>
+                  <a href="/course/<%= data.id %>" class="btn btn-primary">Enrolled</a>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+      <%- include('../partials/script') %>
+      <%- include('../partials/footer') %>
+  </body>
+
+</html>

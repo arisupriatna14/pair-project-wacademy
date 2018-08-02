@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head', { title: 'Homepage' }) %>
+
+  <body style="background-color: snow">
+    <%- include('../partials/navbar-user') %>
+      <br>
+      <br>
+      <br>
+      <div class="container">
+        <div class="row">
+          <% data.forEach(data => { %>
+            <div class="col-lg-4">
+              <div class="card">
+                <div class="card-body">
+                  <img src="<%= data.Course.image %>" alt="" class="card-img-top">
+                  <% for (let i = 0; i < data.Course.rating; i++) { %>
+                    <span class="fa fa-star checked" style="color: orange"></span>
+                  <% } %>
+                  <%= data.Course.rating %>
+                  <span class="text-muted">Level: <%= data.Course.level %></span><br><br>
+                  <h5 class="card-title"><%= data.Course.title %></h5>
+                  <p class="card-text"><%= data.Course.description %></p>
+                  <a href="/course/<%= data.Course.id %>" class="btn btn-primary">Learn More</a>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+      <%- include('../partials/script') %>
+      <%- include('../partials/footer') %>
+  </body>
+
+</html>

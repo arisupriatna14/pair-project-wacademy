@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head', { title: 'Homepage' }) %>
+
+  <body style="background-color: snow">
+    <%- include('../partials/navbar-user') %>
+      <br>
+      <br>
+      <br>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-12 col-sm-12">
+            <h2><%= dataTutorial.title %></h2>
+            <img src="<%= dataTutorial.image %>" alt="">
+            <p><%= dataTutorial.description %></p>
+            <br>
+            
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">NO</th>
+                  <th scope="col">LIST</th>
+                  <th scope="col">STATUS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% dataTutorial.Tutorials.forEach((list, i) => { %>
+                  <tr>
+                    <td><%= list.id %></td>
+                    <td>
+                      <% if (list.id === 1 && list.status === false) { %>
+                        <button onclick="location.href='/course/<%= dataTutorial.id %>/tutorial/<%= list.id %>'" class="btn btn-success"><%= list.tutorial_name %></button><br><br>
+                      <% } else { %>
+                        <% if (list.id > 0 && list.status === true) { %>
+                          <button onclick="location.href='/course/<%= dataTutorial.id %>/tutorial/<%= list.id %>'" class="btn btn-success"><%= list.tutorial_name %></button><br><br>
+                        <% } else { %>
+                          <button onclick="location.href='/course/<%= dataTutorial.id %>/tutorial/<%= list.id %>'" class="btn btn-secondary" disabled><%= list.tutorial_name %></button><br><br>
+                        <% } %>
+                      <% } %>
+                    </td>
+                    <td><%= statusCompleted(list.status) %></td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+            <center>
+              <a href="/home" class="btn btn-primary">Back to Home</a>
+            </center>
+          </div>
+        </div>
+      </div>
+      <%- include('../partials/script') %>
+      <%- include('../partials/footer') %>
+  </body>
+
+</html>
