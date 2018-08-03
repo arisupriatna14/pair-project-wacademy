@@ -38,7 +38,6 @@ router.get('/:id', authentication, (req, res) => {
               image: req.session.account.image_profile,
               dataTutorial: courseById
             })
-            // res.json(courseById)
           })
           .catch(err => {
             res.json(err)
@@ -87,10 +86,6 @@ router.get('/:id', authentication, (req, res) => {
 })
 
 router.get('/:courseId/tutorial/:tutorialId', authentication, (req, res) => {
-  sequelize.query("SELECT COUNT(nilai_tutorial) FROM `Tutorials` WHERE status = true", {type: sequelize.QueryTypes.SELECT})
-      .then(totalNilai => {
-        res.json(totalNilai)
-      })
   models.Tutorial.update({
     status: true
   }, {

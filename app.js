@@ -3,7 +3,7 @@ const app = express()
 const session = require('express-session')
 const fileUpload = require('express-fileupload')
 const bcrypt = require('bcrypt')
-const port = 3030
+const port = process.env.PORT || 4000
 
 const routesIndex = require('./routes/index')
 const routesHome = require('./routes/home')
@@ -12,6 +12,7 @@ const routesMyCourse = require('./routes/mycourse')
 const routesAdmin = require('./routes/admin')
 
 app.locals.dateFormat = require('./helpers/dateFormat')
+app.locals.countProgress = require('./helpers/countProgress')
 
 app.set('view engine', 'ejs')
 app.set('trust proxy', 1)
