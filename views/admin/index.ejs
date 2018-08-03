@@ -1,20 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
-  <%- include('../partials/head', { title: 'Homepage' }) %>
-  <body>
+<html>
+<head>
+    <%- include('../partials/head', { title: 'Admin Page' }) %>
+</head>
+<body><br>
     <%- include('../partials/navbar-admin') %>
-    <br><br><br>
     <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <center>
-            <img src="https://res-1.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1482132470/vfmmn0twb17nn2epblee.png" alt="">
-            <h1>WELCOME TO ADMIN PAGE COURSE ONLINE WACADEMY</h1>
-            <img src="<%= image %>" alt="">
-          </center>
-        </div>
-      </div>
+    <br><br>
+    <button type="button" onclick="location.href='/home/admin/course'" class="btn btn-primary">Create Course</button>
+    <br>
+    <hr>
+    <h4>List Course</h4>
+          <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                    <td>No</td>
+                    <td>Name Course</td>
+                    <td>Level</td>
+                    <td>Rating</td>
+                    <td>Release Date</td>
+                    <td>View</td>
+                </tr>
+              </thead>
+              <tbody>
+                  <% course.forEach((data, i) => {%>
+                <tr>
+                    <td><%= i+1 %></td>
+                    <td><%= data.title %></td>
+                    <td><%= data.level %></td>
+                    <td><%= data.rating %></td>
+                    <td><%= dateFormat(data.createdAt) %></td>
+                    <td><a href="/home/admin/course/<%= data.id %>/detail" class="badge badge-success">Detail Course</a></td>
+                </tr>
+                <%})%>
+              </tbody>
+          </table>
     </div>
     <%- include('../partials/script') %>
-  </body>
+      <%- include('../partials/footer') %>
+</body>
 </html>

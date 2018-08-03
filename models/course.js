@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     Course.belongsToMany(models.User, {
       through: models.TakeCourse
     })
+    // Course.belongsToMany(models.User, {
+    //   through: models.TutorialCourse
+    // })
   };
   return Course;
 };

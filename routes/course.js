@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 const models = require('../models')
 const authentication = require('../helpers/auth')
 const Op = require('sequelize').Op
+const sequelize = require('sequelize')
 
 router.get('/:id', authentication, (req, res) => {
   models.TakeCourse.findOne({
@@ -83,10 +84,13 @@ router.get('/:id', authentication, (req, res) => {
           })
       })
     })
-  
 })
 
 router.get('/:courseId/tutorial/:tutorialId', authentication, (req, res) => {
+  sequelize.query("SELECT COUNT(nilai_tutorial) FROM `Tutorials` WHERE status = true", {type: sequelize.QueryTypes.SELECT})
+      .then(totalNilai => {
+        res.json(totalNilai)
+      })
   models.Tutorial.update({
     status: true
   }, {
@@ -94,6 +98,7 @@ router.get('/:courseId/tutorial/:tutorialId', authentication, (req, res) => {
       id: req.params.tutorialId
     }
   })
+  
   models
     .Tutorial
     .findOne({
@@ -102,6 +107,14 @@ router.get('/:courseId/tutorial/:tutorialId', authentication, (req, res) => {
       },
     })
     .then(detailTutorial => {
+      models.TakeCourse.update({
+        total_progress: detailTutorial.nilai_tutorial
+      }, {
+        where: {
+          CourseId: req.params.courseId,
+          UserId: req.session.account.id
+        }
+      })
       models
         .Course
         .findById(req.params.courseId, {
@@ -125,6 +138,8 @@ router.get('/:courseId/tutorial/:tutorialId', authentication, (req, res) => {
     .catch(err => {
       res.json(err)
     })
+
+    
 })
 
 module.exports = router

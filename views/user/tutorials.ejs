@@ -8,13 +8,16 @@
       <br>
       <br>
       <div class="container">
+        Progress: 
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+        </div>
         <div class="row">
           <div class="col-lg-8 col-md-12 col-sm-12">
             <h2><%= dataTutorial.title %></h2>
             <img src="<%= dataTutorial.image %>" alt="">
             <p><%= dataTutorial.description %></p>
             <br>
-            
             <table class="table">
               <thead>
                 <tr>
@@ -28,17 +31,17 @@
                   <tr>
                     <td><%= list.id %></td>
                     <td>
-                      <% if (list.id === 1 && list.status === false) { %>
+                      <% if (i === 0 && list.status === false) { %>
                         <button onclick="location.href='/course/<%= dataTutorial.id %>/tutorial/<%= list.id %>'" class="btn btn-success"><%= list.tutorial_name %></button><br><br>
                       <% } else { %>
-                        <% if (list.id > 0 && list.status === true) { %>
+                        <% if (i >= 0 && list.status === true) { %>
                           <button onclick="location.href='/course/<%= dataTutorial.id %>/tutorial/<%= list.id %>'" class="btn btn-success"><%= list.tutorial_name %></button><br><br>
                         <% } else { %>
                           <button onclick="location.href='/course/<%= dataTutorial.id %>/tutorial/<%= list.id %>'" class="btn btn-secondary" disabled><%= list.tutorial_name %></button><br><br>
                         <% } %>
                       <% } %>
                     </td>
-                    <td><%= statusCompleted(list.status) %></td>
+                    <td><%= list.statusCompleted() %></td>
                   </tr>
                 <% }) %>
               </tbody>

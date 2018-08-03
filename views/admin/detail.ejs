@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Course</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="main.js"></script>
+</head>
+<body><br>
+    <div class="container">
+            <h4>Detail Course  <%= course.title %></h4>
+            <br>
+            <h4>List Tutorial</h4>
+            <table class="table">
+                    <thead>
+                      <tr>
+                          <td></td>
+                          <td>Name Tutorial</td>
+                          <td>Description</td>
+                          <td>Score</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% course.Tutorials.forEach((data, i) => {%>
+                      <tr>
+                          <td><%= i+1 %></td>
+                          <td><%= data.tutorial_name %></td>
+                          <td><%= data.description %></td>
+                          <td><%= data.nilai_tutorial %></td>
+                      </tr>
+                      <%})%>
+                    </tbody>
+                </table>
+                <br>
+                <hr>
+                <h4>List Challenge</h4>
+                <table class="table">
+                        <thead>
+                          <tr>
+                              <td>No</td>
+                              <td>Soal</td>
+                              <td>Jawaban</td>
+                              <td>Score</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <% course.Challenges.forEach((data, i) => {%>
+                          <tr>
+                              <td><%= i+1 %></td>
+                              <td><%= data.soal %></td>
+                              <td><%= data.jawaban %></td>
+                              <td><%= data.nilai_challenge %></td>
+                          </tr>
+                          <%})%>
+                        </tbody>
+                    </table>
+                    <div style="text-align: right">
+                            <button type="button" onclick="location.href='/home/admin'" class="btn btn-secondary">Back</button>
+                    </div>
+        </div>
+       
+</body>
+</html>

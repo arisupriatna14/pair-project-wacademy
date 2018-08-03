@@ -32,10 +32,11 @@ router.post('/signup', (req, res) => {
         })
         .then(dataUser => {
           req.session.account = dataUser
-          res.render('./user/index', {
-            username: req.session.account.username,
-            image: req.session.account.image_profile
-          })
+          // res.render('./user/index', {
+          //   username: req.session.account.username,
+          //   image: req.session.account.image_profile
+          // })
+          res.redirect('/home')
         })
         .catch(err => {
           res.render('signup', {
@@ -63,7 +64,7 @@ router.post('/home', (req, res) => {
     .then(userLogin => {
       if (userLogin.role === 'admin') {
         req.session.account = userLogin
-        res.render('./admin/index', {
+        res.render('./admin/home', {
           username: req.session.account.username,
           image: req.session.account.image_profile 
         })

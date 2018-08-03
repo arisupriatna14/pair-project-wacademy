@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Course</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="main.js"></script>
+</head>
+<body><br>
+    <div class="container">
+        <h2>Edit Challenge</h2>
+        <div class="form-group">
+            <form action="/home/admin/course/challenge/edit/<%= challenge.id %>" method="post">
+                Soal:<br>
+                <input type="text" class="form-control" name="soal" value="<%= challenge.soal %>" required>
+                Jawaban:<br>
+                <input type="text" class="form-control" name="jawaban" value="<%= challenge.jawaban %>" required>
+                Score:<br>
+                <input type="text" class="form-control" name="nilai_challenge" value="<%= challenge.nilai_challenge %>" required>
+                <br>
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </form> <br>
+            </div>
+          <div style="text-align: right">
+                <button type="button" onclick="location.href='/home/admin/course'" class="btn btn-secondary">Back</button>
+              </div>
+        </div>
+</body>
+</html>
